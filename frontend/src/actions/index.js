@@ -18,9 +18,7 @@ export const receiveCategories = categories => ({
 
 export const fetchCategories = () => dispatch => (
     api.getCategories().then(
-        categories => dispatch(
-            receiveCategories(categories)
-        )
+        categories => dispatch(receiveCategories(categories))
     )
 )
 
