@@ -2,7 +2,7 @@ import * as api from '../utils/api'
 
 export const RECEIVE_CATEGORIES = 'FETCH_CATEGORIES'
 
-export const FETCH_POSTS = 'FETCH_POSTS'
+export const RECEIVE_POSTS = 'FETCH_POSTS'
 export const ADD_POST = 'ADD_POST'
 export const REMOVE_POST = 'REMOVE_POST'
 export const UPDATE_POST = 'UPDATE_POST'
@@ -22,12 +22,22 @@ export const fetchCategories = () => dispatch => (
     )
 )
 
-export function fetchPosts(posts) {
-    return {
-        type: FETCH_POSTS,
+export const receivePosts = posts => ({
+        type: RECEIVE_POSTS,
         posts
-    }
-}
+})
+
+export const fetchAllPosts = () => dispatch => (
+    api.getAllPosts().then(
+        posts => dispatch(receivePosts(posts))
+    )
+)
+
+export const fetchPostsByCategory = (category) => dispatch => (
+    api.getPostsByCategory(category).then(
+        posts => dispatch(receivePosts(posts))
+    )
+)
 
 export function addPost(post) {
     return {

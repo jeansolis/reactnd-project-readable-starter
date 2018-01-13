@@ -1,6 +1,6 @@
 import {
     RECEIVE_CATEGORIES,
-    FETCH_POSTS,
+    RECEIVE_POSTS,
     ADD_POST
 } from '../actions'
 import { combineReducers } from 'redux'
@@ -32,7 +32,7 @@ function posts(state = {}, action){
                 ...state,
                 [post.id]: {...post}
             }
-        case FETCH_POSTS:
+        case RECEIVE_POSTS:
             const {posts} = action
             return posts.reduce((result, post) => {
                 result[post.id] = {...post}

@@ -2,14 +2,13 @@ import React, { Component } from 'react'
 import { Route, withRouter } from 'react-router-dom'
 import * as api from '../utils/api'
 import CategoryList from './CategoryList'
-import PostList from './PostList'
+import PostListContainer from './PostListContainer'
 import { connect } from 'react-redux'
 
 import { fetchCategories, addPost } from '../actions'
 
 import '../App.css';
 
- 
 class App extends Component {
 
   static propTypes = {
@@ -27,7 +26,7 @@ class App extends Component {
 
     //     this.props.fetchCategories(categories)
     // })
-    console.log(this.props.fetchCategories());
+    this.props.fetchCategories()
 
   }
 
@@ -40,7 +39,7 @@ class App extends Component {
         <Route exact path="/" render={(props) => (
           <div>
             <CategoryList category="all" />
-            <PostList category="all" />
+            <PostListContainer category="all" />
           </div>
         )} />
 
@@ -48,7 +47,7 @@ class App extends Component {
         <Route path="/:category" render={(props) => (
           <div>      
             <CategoryList category={props.match.params.category} />
-            <PostList category={props.match.params.category}/>
+            <PostListContainer category={props.match.params.category}/>
           </div>
         )} />
         

@@ -32,7 +32,6 @@ class CategoryList extends Component {
                             </NavLink>
                         </li>    
                     ))}
-                    
                 </ul>
             </div>
         )
