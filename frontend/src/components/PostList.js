@@ -27,8 +27,8 @@ class PostList extends Component {
     }
 
     componentWillReceiveProps(nextProps){
-        console.log(nextProps ? nextProps.category : 'no next props')
-        console.log(this.props.category)
+        //console.log(nextProps ? nextProps.category : 'no next props')
+        //console.log(this.props.category)
         if (nextProps && nextProps.category !== this.props.category){
             (nextProps.category !== 'all') ?
             api.getPostsByCategory(nextProps.category).then((posts)=>{

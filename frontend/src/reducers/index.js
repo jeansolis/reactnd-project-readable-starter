@@ -1,5 +1,5 @@
 import {
-    FETCH_CATEGORIES,
+    RECEIVE_CATEGORIES,
     FETCH_POSTS,
     ADD_POST
 } from '../actions'
@@ -13,7 +13,7 @@ import { combineReducers } from 'redux'
 
 function categories(state = {}, action) {
     switch(action.type){
-        case FETCH_CATEGORIES:
+        case RECEIVE_CATEGORIES:
             const {categories} = action
             return categories.reduce((result, category) => {
                 result[category.name] = {...category}; 

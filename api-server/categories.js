@@ -22,7 +22,7 @@ const defaultData = {
         path: 'javascript'
       },
       {
-        name: 'es6',
+        name: 'ES6',
         path: 'es6'
       }
   ]

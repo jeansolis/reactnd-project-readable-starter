@@ -23,10 +23,11 @@ class App extends Component {
   componentDidMount(){
 
     //Load categories from server
-    api.getCategories().then((categories)=>{
+    // api.getCategories().then((categories)=>{
 
-        this.props.fetchCategories(categories)
-    })
+    //     this.props.fetchCategories(categories)
+    // })
+    console.log(this.props.fetchCategories());
 
   }
 
