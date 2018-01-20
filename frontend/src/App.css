@@ -27,10 +27,14 @@
   to { transform: rotate(360deg); }
 }
 
+.action-icon {
+  cursor: pointer;
+}
+
 .app-container {
   padding: 0 10px;
   margin: auto;
-  width: 800px;
+  width: 1024px;
 }
 
 .category-list {
@@ -70,9 +74,10 @@
   display: inline-block;
   text-align: center;
   vertical-align: top;
-  width: 600px;
+  width: 824px;
 }
 
 .post-list-table td {
   border: 1px solid;
+  /* width: 100%; */
 }

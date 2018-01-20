@@ -1,7 +1,8 @@
 import {
     RECEIVE_CATEGORIES,
     RECEIVE_POSTS,
-    ADD_POST
+    ADD_POST,
+    UPDATE_POST
 } from '../actions'
 import { combineReducers } from 'redux'
 
@@ -25,19 +26,23 @@ function categories(state = {}, action) {
 }
 
 function posts(state = {}, action){
+    const {post, posts} = action
     switch(action.type){
         case ADD_POST:
-            const {post} = action
             return {
                 ...state,
                 [post.id]: {...post}
             }
         case RECEIVE_POSTS:
-            const {posts} = action
             return posts.reduce((result, post) => {
                 result[post.id] = {...post}
                 return result;
             }, {})
+        case UPDATE_POST:
+            return {
+                ...state,
+                [post.id]: {...post}
+            }
         default:
             return state
     }

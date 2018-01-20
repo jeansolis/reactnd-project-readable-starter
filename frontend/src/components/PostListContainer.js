@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import * as api from '../utils/api'
 import { connect } from 'react-redux'
-import { addPost, fetchAllPosts, fetchPostsByCategory } from '../actions'
+import { fetchAllPosts, fetchPostsByCategory, upVotePost, downVotePost, addPost } from '../actions'
 import PostList from './PostList'
 
 class PostListContainer extends Component {
@@ -29,10 +29,21 @@ class PostListContainer extends Component {
         }
     }
 
+    upVotePost = (postID) => {
+        this.props.upVote(postID, 'upVote')
+    }
+
+    downVotePost = (postID) => {
+        this.props.downVote(postID, 'downVote')
+    }
+
     render() {
         return (
-            <PostList posts={this.props.posts} category={this.props.category} />
-        )
+            <PostList posts={this.props.posts} 
+            category={this.props.category} 
+            upVote={this.upVotePost}
+            downVote={this.downVotePost }/>
+        ) 
     }
 }
 
@@ -48,7 +59,9 @@ function mapStateToProps({posts}){
     return {
         addPost: (post) => dispatch(addPost(post)),
         fetchAllPosts: (posts) => dispatch(fetchAllPosts(posts)),
-        fetchPostsByCategory: (posts) => dispatch(fetchPostsByCategory(posts))
+        fetchPostsByCategory: (posts) => dispatch(fetchPostsByCategory(posts)),
+        upVote: (id, option) => dispatch(upVotePost(id, option)),
+        downVote: (id, option) => dispatch(downVotePost(id, option))
     }
   }
 
