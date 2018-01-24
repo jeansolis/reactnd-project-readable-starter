@@ -31,6 +31,27 @@
   cursor: pointer;
 }
 
+.action-icon.edit {
+  color: #0931CC;
+}
+
+.action-icon.delete {
+  color: red;
+}
+
+.action-icon.up-vote {
+  color: #42AF3E;
+}
+
+.action-icon.down-vote {
+  color: #EEA211
+
+}
+
+.action-icon.add {
+  color: #651E1E;
+}
+
 .app-container {
   padding: 0 10px;
   margin: auto;
@@ -80,6 +101,10 @@
 .post-list-column-header {
   text-decoration: underline;
   cursor: pointer;
+}
+
+.post-list-table {
+  margin: 10px;
 }
 
 .post-list-table td {

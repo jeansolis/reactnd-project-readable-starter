@@ -12,6 +12,7 @@ import ThumbsUpIcon from 'react-icons/lib/fa/thumbs-o-up'
 import ThumbsDownIcon from 'react-icons/lib/fa/thumbs-o-down'
 import AngleUpIcon from 'react-icons/lib/fa/angle-up'
 import AngleDownIcon from 'react-icons/lib/fa/angle-down'
+import PlusCircle from 'react-icons/lib/fa/plus-circle'
 
 //import { addPost, fetchPosts } from '../actions'
 
@@ -37,6 +38,7 @@ class PostList extends Component {
         /* Post List */
         <div className="post-list-section">
             <h2>{capitalize(this.props.category)} Posts</h2>
+
             {(this.props.posts.length > 0)?
                 <table className="post-list-table">
                 <thead>
@@ -64,10 +66,10 @@ class PostList extends Component {
                         <td>{moment(post.timestamp).format('YYYY-MM-DD HH:MM:SS')}</td>
                         <td>{post.voteScore}</td>
                         <td>
-                            <EditIcon size={30} title="Edit Post" className="action-icon" />
-                            <RemoveIcon size={30} alt="Delete Post" className="action-icon" />
-                            <ThumbsUpIcon size={30} alt="Up Vote Post" onClick={() => this.props.upVote(post.id)} className="action-icon"/>
-                            <ThumbsDownIcon size={30} alt="Down Vote Post" onClick={() => this.props.downVote(post.id)} className="action-icon"/>
+                            <EditIcon size={30} className="action-icon edit" />
+                            <RemoveIcon size={30} title="Delete Post" className="action-icon delete" />
+                            <ThumbsUpIcon size={30} alt="Up Vote Post" onClick={() => this.props.upVote(post.id)} className="action-icon up-vote"/>
+                            <ThumbsDownIcon size={30} alt="Down Vote Post" onClick={() => this.props.downVote(post.id)} className="action-icon down-vote"/>
                         </td>
                     </tr>
                 ))}
@@ -76,6 +78,7 @@ class PostList extends Component {
             :
             <span>Category is empty</span>
              } 
+             <PlusCircle size={40} className="action-icon add"/>
         </div>
         )
     }
