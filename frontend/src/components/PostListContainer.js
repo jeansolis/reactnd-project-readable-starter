@@ -1,11 +1,7 @@
 import React, {Component} from 'react'
 import * as api from '../utils/api'
 import { connect } from 'react-redux'
-import { fetchAllPosts, 
-    fetchPostsByCategory, 
-    upVotePost, 
-    downVotePost, 
-    addPost } from '../actions'
+import { fetchAllPosts, fetchPostsByCategory} from '../actions'
 import PostList from './PostList'
 
 class PostListContainer extends Component {
@@ -31,19 +27,12 @@ class PostListContainer extends Component {
              this.props.fetchPostsByCategory(nextProps.category) :
              this.props.fetchAllPosts();
 
+             //Reset sorting
              this.setState({
                 sortColumn: '',
                 sortOrder: ''
              })
         }
-    }
-
-    upVotePost = (postID) => {
-        this.props.upVote(postID, 'upVote')
-    }
-
-    downVotePost = (postID) => {
-        this.props.downVote(postID, 'downVote')
     }
 
     orderByColumn = (column) => {
@@ -62,8 +51,8 @@ class PostListContainer extends Component {
         return (
             <PostList 
             category={this.props.category} 
-            upVote={this.upVotePost}
-            downVote={this.downVotePost}
+            upVote={this.props.upVote}
+            downVote={this.props.downVote}
             sortByColumn={this.orderByColumn}
             sortColumn={this.state.sortColumn} 
             sortOrder={this.state.sortOrder} />
@@ -73,7 +62,6 @@ class PostListContainer extends Component {
 
 
 function mapStateToProps({posts}, state){
-    console.log('state', state)
     return {
         // posts: Object.keys(posts).map((key) => posts[key])
     }
@@ -81,11 +69,8 @@ function mapStateToProps({posts}, state){
   
   function mapDispatchToProps(dispatch){
     return {
-        addPost: (post) => dispatch(addPost(post)),
         fetchAllPosts: (posts) => dispatch(fetchAllPosts(posts)),
-        fetchPostsByCategory: (posts) => dispatch(fetchPostsByCategory(posts)),
-        upVote: (id, option) => dispatch(upVotePost(id, option)),
-        downVote: (id, option) => dispatch(downVotePost(id, option))
+        fetchPostsByCategory: (posts) => dispatch(fetchPostsByCategory(posts))
     }
   }
 

@@ -44,12 +44,12 @@
 }
 
 .action-icon.down-vote {
-  color: #EEA211
+  color: #651E1E;
 
 }
 
 .action-icon.add {
-  color: #651E1E;
+  color: #EEA211
 }
 
 .app-container {
@@ -89,6 +89,27 @@
 .category-selected {
   background-color: #111143;
   color: white;
+}
+
+.post-detail-actions-container {
+  margin: 10px 0 0 0;
+}
+
+.post-detail-comments-container {
+  margin: 10px 0;
+}
+
+.post-detail-author-date-container {
+  margin: 0 0 10px 0;
+}
+
+.post-detail-author, .post-detail-date, .post-detail-score-value { 
+  color:blue
+}
+
+.post-detail-body {
+  /*border: 1px solid black; */
+  margin: 20px;
 }
 
 .post-list-section {

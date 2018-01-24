@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
-import * as api from '../utils/api'
 import { capitalize } from '../utils/helper'
-import { withRouter, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import sortBy from 'sort-by'
 import moment from 'moment'
@@ -57,7 +56,6 @@ class PostList extends Component {
                     </tr>
                 </thead>
                 <tbody>
-                {   console.log(this.props)}
                     {this.props.posts.map((post) => (
                     <tr key={post.id}>
                         <td><Link to={`/${post.category}/${post.id}`}>{post.title}</Link></td>
@@ -67,9 +65,11 @@ class PostList extends Component {
                         <td>{post.voteScore}</td>
                         <td>
                             <EditIcon size={30} className="action-icon edit" />
-                            <RemoveIcon size={30} title="Delete Post" className="action-icon delete" />
-                            <ThumbsUpIcon size={30} alt="Up Vote Post" onClick={() => this.props.upVote(post.id)} className="action-icon up-vote"/>
-                            <ThumbsDownIcon size={30} alt="Down Vote Post" onClick={() => this.props.downVote(post.id)} className="action-icon down-vote"/>
+                            <RemoveIcon size={30} className="action-icon delete" />
+                            <ThumbsUpIcon size={30} className="action-icon up-vote" 
+                                onClick={() => this.props.upVote(post.id)} />
+                            <ThumbsDownIcon size={30} className="action-icon down-vote" 
+                                onClick={() => this.props.downVote(post.id)} />
                         </td>
                     </tr>
                 ))}

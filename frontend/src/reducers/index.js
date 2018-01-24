@@ -1,9 +1,9 @@
 import {
     RECEIVE_CATEGORIES,
     RECEIVE_POSTS,
+    RECEIVE_POST,
     ADD_POST,
-    UPDATE_POST,
-    SORT_BY_COLUMN
+    UPDATE_POST
 } from '../actions'
 import { combineReducers } from 'redux'
 
@@ -44,18 +44,26 @@ function posts(state = {}, action){
                 ...state,
                 [post.id]: {...post}
             }
+        case RECEIVE_POST:
+            return {
+                [post.id]: {...post}
+            }
         default:
             return state
     }
 }
 
 function comments(state = {}, action){
+    const {post, comments} = action
     switch(action.type){
+        case RECEIVE_POST:
+            return {
+                [post.id]: {...comments}
+            }
         default:
             return state
     }
 }
-
 
 export default combineReducers({
     categories,
