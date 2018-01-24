@@ -1,7 +1,11 @@
 import React, {Component} from 'react'
 import * as api from '../utils/api'
 import { connect } from 'react-redux'
-import { fetchAllPosts, fetchPostsByCategory, upVotePost, downVotePost, addPost } from '../actions'
+import { fetchAllPosts, 
+    fetchPostsByCategory, 
+    upVotePost, 
+    downVotePost, 
+    addPost } from '../actions'
 import PostList from './PostList'
 
 class PostListContainer extends Component {
@@ -11,8 +15,8 @@ class PostListContainer extends Component {
     }
 
     state = {
-        posts: [],
-        category: 'all'
+        sortColumn: '',
+        sortOrder: ''
     }
 
     componentDidMount() {
@@ -26,6 +30,11 @@ class PostListContainer extends Component {
              (nextProps.category !== 'all') ?
              this.props.fetchPostsByCategory(nextProps.category) :
              this.props.fetchAllPosts();
+
+             this.setState({
+                sortColumn: '',
+                sortOrder: ''
+             })
         }
     }
 
@@ -37,21 +46,36 @@ class PostListContainer extends Component {
         this.props.downVote(postID, 'downVote')
     }
 
+    orderByColumn = (column) => {
+        //Update local state
+        this.setState((prevState) => ({
+            sortColumn: column,
+            sortOrder: (prevState.sortColumn !== column) ? 
+            ''
+            : 
+            (prevState.sortOrder === '') ? '-' : '' 
+        }))
+    }
+
     render() {
+        console.log(this.state)
         return (
-            <PostList posts={this.props.posts} 
+            <PostList 
             category={this.props.category} 
             upVote={this.upVotePost}
-            downVote={this.downVotePost }/>
+            downVote={this.downVotePost}
+            sortByColumn={this.orderByColumn}
+            sortColumn={this.state.sortColumn} 
+            sortOrder={this.state.sortOrder} />
         ) 
     }
 }
 
 
-function mapStateToProps({posts}){
-    console.log(posts)
+function mapStateToProps({posts}, state){
+    console.log('state', state)
     return {
-        posts: Object.keys(posts).map((key) => posts[key])
+        // posts: Object.keys(posts).map((key) => posts[key])
     }
   }
   

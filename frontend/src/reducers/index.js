@@ -2,7 +2,8 @@ import {
     RECEIVE_CATEGORIES,
     RECEIVE_POSTS,
     ADD_POST,
-    UPDATE_POST
+    UPDATE_POST,
+    SORT_BY_COLUMN
 } from '../actions'
 import { combineReducers } from 'redux'
 

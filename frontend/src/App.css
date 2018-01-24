@@ -77,7 +77,13 @@
   width: 824px;
 }
 
+.post-list-column-header {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
 .post-list-table td {
   border: 1px solid;
   /* width: 100%; */
 }
+

@@ -44,7 +44,7 @@ class App extends Component {
         )} />
 
         {/*Route for Category View */}
-        <Route path="/:category" render={(props) => (
+        <Route exact path="/:category" render={(props) => (
           <div>      
             <CategoryList category={props.match.params.category} />
             <PostListContainer category={props.match.params.category}/>
