@@ -47,7 +47,6 @@ class PostListContainer extends Component {
     }
 
     render() {
-        console.log(this.state)
         return (
             <PostList 
             category={this.props.category} 

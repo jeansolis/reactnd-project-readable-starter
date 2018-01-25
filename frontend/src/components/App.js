@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 
 import CategoryList from './CategoryList'
 import PostListContainer from './PostListContainer'
-import PostDetail from './PostDetail'
+import PostDetailContainer from './PostDetailContainer'
 
 import { fetchCategories, upVotePost, downVotePost } from '../actions'
 
@@ -59,7 +59,7 @@ class App extends Component {
         )} />
 
         <Route exact path="/:category/:postID" render={(props) => (
-            <PostDetail {...props} upVote={this.upVotePost} downVote={this.downVotePost} />
+            <PostDetailContainer {...props} upVote={this.upVotePost} downVote={this.downVotePost} />
         )}/>
 
       </main>
