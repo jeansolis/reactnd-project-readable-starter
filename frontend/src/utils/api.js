@@ -13,10 +13,42 @@ const headers = {
   'Authorization': token
 }
 
+//CATEGORIES ENDPOINTS
+
 export const getCategories = () =>
     fetch(`${api}/categories`, { headers })
     .then(res => res.json())
     .then(data => data.categories)
+
+//POSTS ENDPOINTS
+
+export const addPost = (post) =>
+    fetch(`${api}/posts/`, {
+        method: 'POST',
+        headers: {
+        ...headers,
+        'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ post })
+    }).then(res => res.json())
+
+export const deletePost = (postID) =>
+    fetch(`${api}/posts/${postID}`, {
+        method: 'DELETE',
+        headers: {
+            ...headers,
+        }
+    }).then(res => res.json())
+
+export const editPost = (post) => 
+    fetch(`${api}/posts/${post.postID}`, {
+        method: 'PUT',
+        headers: {
+            ...headers,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ post })
+    })
 
 export const getAllPosts = () =>
     fetch(`${api}/posts`, { headers })
@@ -33,16 +65,6 @@ export const getPost = (postID) =>
     .then(res => res.json())
     .then(data => data)
 
-export const addPost = (post) =>
-    fetch(`${api}/posts/`, {
-        method: 'POST',
-        headers: {
-        ...headers,
-        'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ post })
-    }).then(res => res.json())
-
 export const votePost = (id, option) => 
     fetch(`${api}/posts/${id}`, {
         method: 'POST',
@@ -53,8 +75,44 @@ export const votePost = (id, option) =>
         body: JSON.stringify({ option })
     }).then(res => res.json())
 
-export const getComments = (postID) => 
-    fetch(`${api}/posts/${postID}/comments`, {headers})
+
+//COMMENTS ENDPOINTS
+
+export const addComment = (comment) =>
+    fetch(`${api}/comments/`, {
+        method: 'POST',
+        headers: {
+        ...headers,
+        'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ comment })
+    }).then(res => res.json())
+
+export const deleteComment = (commentID) =>
+    fetch(`${api}/comments/${commentID}`, {
+        method: 'DELETE',
+        headers: {
+            ...headers,
+        }
+    }).then(res => res.json())
+
+export const editComment = (comment) => 
+    fetch(`${api}/comments/${comment.commentID}`, {
+        method: 'PUT',
+        headers: {
+            ...headers,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ comment })
+    })
+
+export const getComment = (commentID) => 
+    fetch(`${api}/comments/${commentID}`, {headers})
+    .then(res => res.json())
+    .then(data => data)
+
+export const getComments = (commentID) => 
+    fetch(`${api}/posts/${commentID}/comments`, {headers})
     .then(res => res.json())
     .then(data => data)
 
