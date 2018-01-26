@@ -91,6 +91,62 @@
   color: white;
 }
 
+.comments-list {
+  list-style: none;
+  margin: 20px;
+  padding: 0px;
+}
+
+.comments-list li {
+  border-bottom: solid 1px #6A5B5B;
+  margin: 25px 0 0 0;
+  padding: 0 0 5px 0;
+}
+
+.overlay {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  background-color: rgba(255, 255, 255, 0.75);
+}
+
+.modal {
+  position: absolute;
+  top: 40px;
+  left: 200px;
+  right: 200px;
+  bottom: 40px;
+  border: 1px solid rgb(204, 204, 204);
+  background: rgb(255, 255, 255);
+  overflow: auto;
+  border-radius: 4px;
+  outline: none;
+  padding: 20px;
+  border-radius: 3px;
+  box-shadow: 0 3px 8px 0 rgba(0,0,0,.24), 0 3px 12px 0 rgba(0,0,0,.12);
+  min-width: 500px;
+}
+
+.post-comment-author-date-container {
+  font-size: 12px;
+  margin: 0 0 10px 0;
+}
+
+.post-comment-body {
+  padding: 0 0 20px 0;
+}
+
+.post-comment-score{
+  font-size: 12px;
+}
+
+.post-comment-actions{
+  font-size: 12px;
+  margin: 8px 0 0 0;
+}
+
 .post-detail-actions-container {
   margin: 10px 0 0 0;
 }
@@ -103,7 +159,8 @@
   margin: 0 0 10px 0;
 }
 
-.post-detail-author, .post-detail-date, .post-detail-score-value { 
+.post-detail-author, .post-detail-date, .post-detail-score-value,
+.post-comment-author, .post-comment-date, .post-comment-score-value { 
   color:blue
 }
 

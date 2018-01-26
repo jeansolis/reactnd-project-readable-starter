@@ -14,19 +14,19 @@ class PostDetail extends React.Component {
         const post = this.props.post
         return (
             <div className="post-detail-post">
-                {(this.props.post) ?
+                {(post) ?
                 <div>
                     <div className="post-detail-actions-container">
                         <EditIcon size={30} className="action-icon edit" /> Edit Post
                         <RemoveIcon size={30} className="action-icon delete" /> Delete Post
                     </div>
-                    <h1>{this.props.post.title}</h1>
+                    <h1>{post.title}</h1>
                     <div className="post-detail-body">{post.body}</div>
                     <div className="post-detail-author-date-container">
                         Created by <span className="post-detail-author">{post.author}</span> on
                         <span className="post-detail-date"> {moment(post.timestamp).format('YYYY-MM-DD HH:MM:SS')}</span>
                     </div>
-                    <div className="post-detail-score">Current Score: 
+                    <div className="post-detail-score">Post Score: 
                         <span className="post-detail-score-value">{post.voteScore}</span>
                         <ThumbsUpIcon size={25} className="action-icon up-vote" 
                             onClick={() => this.props.upVote(post.id)} />

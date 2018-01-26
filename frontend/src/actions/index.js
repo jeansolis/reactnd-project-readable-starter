@@ -94,3 +94,14 @@ export const fetchComments = postID => dispatch => {
         comments => dispatch(receiveComments(comments))
     )
 }
+
+export const receiveUpdateComment = comment => ({
+    type: UPDATE_COMMENT,
+    comment
+})
+
+export const voteComment = (commentID, option) => dispatch => {
+     api.voteComment(commentID, option).then(
+         comment => dispatch(receiveUpdateComment(comment))
+     )
+ }
