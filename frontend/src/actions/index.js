@@ -82,10 +82,17 @@ export function addPost(post) {
     }
 }
 
-export const receiveComments = (comments) => {
+export const addComment = (comment) => dispatch => {
+    api.addComment(comment).then(
+        comment => dispatch(commentAdded(comment))
+    )
+}
+
+export const commentAdded = comment => {
+    console.log('response', comment)
     return {
-        type: RECEIVE_COMMENTS,
-        comments
+        type: ADD_COMMENT,
+        comment
     }
 }
 
@@ -95,13 +102,21 @@ export const fetchComments = postID => dispatch => {
     )
 }
 
+export const receiveComments = (comments) => {
+    return {
+        type: RECEIVE_COMMENTS,
+        comments
+    }
+}
+
+export const voteComment = (commentID, option) => dispatch => {
+    api.voteComment(commentID, option).then(
+        comment => dispatch(receiveUpdateComment(comment))
+    )
+}
+
 export const receiveUpdateComment = comment => ({
     type: UPDATE_COMMENT,
     comment
 })
 
-export const voteComment = (commentID, option) => dispatch => {
-     api.voteComment(commentID, option).then(
-         comment => dispatch(receiveUpdateComment(comment))
-     )
- }

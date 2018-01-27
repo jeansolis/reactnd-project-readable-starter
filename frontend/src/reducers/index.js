@@ -4,6 +4,7 @@ import {
     RECEIVE_POST,
     ADD_POST,
     UPDATE_POST,
+    ADD_COMMENT,
     UPDATE_COMMENT
 } from '../actions'
 import { combineReducers } from 'redux'
@@ -57,6 +58,14 @@ function posts(state = {}, action){
 function comments(state = {}, action){
     const {post, comments, comment} = action
     switch(action.type){
+        case ADD_COMMENT:
+            return {
+                ...state,
+                [comment.parentId]: {
+                    ...state[comment.parentId],
+                    [comment.id]: {...comment}
+                }
+            }
         case RECEIVE_POST:
             return {
                 [post.id]: comments.reduce((acc, comment) => {
