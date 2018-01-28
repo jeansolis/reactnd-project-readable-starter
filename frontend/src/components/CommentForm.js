@@ -15,7 +15,6 @@ class CommentForm extends React.Component {
         comment.parentId = this.props.post.id
         
         this.props.addComment(comment)
-        console.log(JSON.stringify(comment))
     }
 
     render(){

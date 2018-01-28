@@ -42,8 +42,8 @@ export const deletePost = (postID) =>
         }
     }).then(res => res.json())
 
-export const editPost = (post) => 
-    fetch(`${api}/posts/${post.postID}`, {
+export const editPost = (postID, post) => 
+    fetch(`${api}/posts/${postID}`, {
         method: 'PUT',
         headers: {
             ...headers,

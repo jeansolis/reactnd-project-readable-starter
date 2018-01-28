@@ -33,7 +33,7 @@ class PostDetailContainer extends React.Component {
                  </Link>
 
                 <PostDetail post={post} upVote={this.props.upVote} 
-                    downVote={this.props.downVote} /> 
+                    downVote={this.props.downVote} history={history} /> 
             
                 <CommentList comments={comments} post={post} />
              </div>                                                                          

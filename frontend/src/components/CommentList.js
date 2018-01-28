@@ -51,26 +51,6 @@ class CommentList extends React.Component {
                 </div>
             }
 
-            <Modal className="modal"
-                overlayClassName="overlay"
-                isOpen={this.state.addCommentModalOpen}
-                onRequestClose={this.closeAddCommentModal}
-                contentLabel="Modal"
-                ariaHideApp={false}
-                >
-                <div>
-                    <h2>Add a new comment </h2>
-                    <form onSubmit={this.handleSubmit} >
-                        <input type="text" placeholder="Type your name..." name="author" />
-                        <br />
-                        <textarea placeholder="Type your comment..." name="comment"></textarea>
-                        <br/><br/>
-                        <button type="submit" onClick={this.addComment}>Add Comment</button>
-                        <button type="button" onClick={this.closeCommentModal}>Cancel</button>
-                    </form>
-                </div>
-            </Modal>
-
             </div>
         )
     }

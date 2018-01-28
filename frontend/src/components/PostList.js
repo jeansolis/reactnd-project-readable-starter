@@ -2,8 +2,11 @@ import React, {Component} from 'react'
 import { capitalize } from '../utils/helper'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
+import Modal from 'react-modal'
 import sortBy from 'sort-by'
 import moment from 'moment'
+import Post, {MODE_ADD, MODE_EDIT} from './Post'
+import { deletePost } from '../actions'
 
 import EditIcon from 'react-icons/lib/fa/edit'
 import RemoveIcon from 'react-icons/lib/fa/trash'
@@ -13,8 +16,6 @@ import AngleUpIcon from 'react-icons/lib/fa/angle-up'
 import AngleDownIcon from 'react-icons/lib/fa/angle-down'
 import PlusCircle from 'react-icons/lib/fa/plus-circle'
 
-//import { addPost, fetchPosts } from '../actions'
-
 class PostList extends Component {
     
     static propTypes = {
@@ -22,8 +23,28 @@ class PostList extends Component {
     }
 
     state = {
-        // posts: [],
-        // category: 'all'
+        addPostModalOpen: false,
+        modalMode: MODE_ADD,
+        selectedPost: null
+    }
+
+    openPostModal = (mode, post) => {
+        this.setState({
+            modalMode: mode,
+            addPostModalOpen: true,
+            selectedPost: post
+        })
+    }
+
+    closePostModal = () => {
+        this.setState({
+            addPostModalOpen: false
+        })
+    }
+
+    deletePost = (postID) => {
+        //TODO: Ask for confirmation
+        this.props.deletePost(postID)
     }
 
     render(){
@@ -64,8 +85,10 @@ class PostList extends Component {
                         <td>{moment(post.timestamp).format('YYYY-MM-DD HH:MM:SS')}</td>
                         <td>{post.voteScore}</td>
                         <td>
-                            <EditIcon size={30} className="action-icon edit" />
-                            <RemoveIcon size={30} className="action-icon delete" />
+                            <EditIcon size={30} className="action-icon edit" 
+                                onClick={() => this.openPostModal(MODE_EDIT, post)} />
+                            <RemoveIcon size={30} className="action-icon delete" 
+                                onClick={() => this.deletePost(post.id) }/>
                             <ThumbsUpIcon size={30} className="action-icon up-vote" 
                                 onClick={() => this.props.upVote(post.id)} />
                             <ThumbsDownIcon size={30} className="action-icon down-vote" 
@@ -78,7 +101,18 @@ class PostList extends Component {
             :
             <span>Category is empty</span>
              } 
-             <PlusCircle size={40} className="action-icon add"/>
+             <PlusCircle size={40} className="action-icon add" onClick={() => this.openPostModal(MODE_ADD)}/>
+
+            <Modal className="modal"
+            overlayClassName="overlay"
+            isOpen={this.state.addPostModalOpen}
+            onRequestClose={this.closePostModal}
+            contentLabel="Modal"
+            ariaHideApp={false}
+            >
+                <Post mode={this.state.modalMode} closePostModal={this.closePostModal} 
+                post={this.state.selectedPost}/>
+            </Modal>
         </div>
         )
     }
@@ -93,6 +127,12 @@ function mapStateToProps({posts}, ownProps){
         posts: postList
     }
   }
+
+function mapDispatchToProps(dispatch){
+    return {
+        deletePost: (postID) => dispatch(deletePost(postID))
+    }
+}
   
 //export default PostList
-export default connect(mapStateToProps)(PostList);
+export default connect(mapStateToProps, mapDispatchToProps)(PostList);

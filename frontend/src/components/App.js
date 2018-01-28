@@ -6,6 +6,7 @@ import { connect } from 'react-redux'
 import CategoryList from './CategoryList'
 import PostListContainer from './PostListContainer'
 import PostDetailContainer from './PostDetailContainer'
+import Post, { MODE_ADD } from './Post'
 
 import { fetchCategories, upVotePost, downVotePost } from '../actions'
 
@@ -40,7 +41,7 @@ class App extends Component {
     return (
       <main className="app-container">
         
-        {/*Route for Default Root */}
+        {/* Route for Default Root */}
         <Route exact path="/" render={(props) => (
           <div>
             <CategoryList category="all" />
@@ -49,7 +50,7 @@ class App extends Component {
           </div>
         )} />
 
-        {/*Route for Category View */}
+        {/* Route for Category View */}
         <Route exact path="/:category" render={(props) => (
           <div>      
             <CategoryList category={props.match.params.category} />
@@ -58,6 +59,7 @@ class App extends Component {
           </div>
         )} />
 
+        {/* Route for Post Detail View */}
         <Route exact path="/:category/:postID" render={(props) => (
             <PostDetailContainer {...props} upVote={this.upVotePost} downVote={this.downVotePost} />
         )}/>

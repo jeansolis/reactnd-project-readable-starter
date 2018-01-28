@@ -43,6 +43,7 @@ function posts(state = {}, action){
                 return result;
             }, {})
         case UPDATE_POST:
+            console.log(post)
             return {
                 ...state,
                 [post.id]: {...post}

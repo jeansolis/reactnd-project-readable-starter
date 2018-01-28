@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
-
+import { connect } from 'react-redux'
 import moment from 'moment'
+import Modal from 'react-modal'
+import Post, {MODE_EDIT} from './Post'
+import { deletePost } from '../actions'
 
 import EditIcon from 'react-icons/lib/fa/edit'
 import RemoveIcon from 'react-icons/lib/fa/trash'
@@ -9,7 +12,30 @@ import ThumbsDownIcon from 'react-icons/lib/fa/thumbs-o-down'
 import PlusCircle from 'react-icons/lib/fa/plus-circle'
 
 class PostDetail extends React.Component {
-    
+
+    state = {
+        addPostModalOpen: false
+    }
+
+    openPostModal = () => {
+        this.setState({
+            addPostModalOpen: true
+        })
+    }
+
+    closePostModal = () => {
+        this.setState({
+            addPostModalOpen: false
+        })
+    }
+
+    deletePost = (postID) => {
+        //TODO: Ask for confirmation
+        this.props.deletePost(postID)
+        //Navigate to posts list
+        this.props.history.goBack()
+    }
+
     render(){
         const post = this.props.post
         return (
@@ -17,8 +43,11 @@ class PostDetail extends React.Component {
                 {(post) ?
                 <div>
                     <div className="post-detail-actions-container">
-                        <EditIcon size={30} className="action-icon edit" /> Edit Post
-                        <RemoveIcon size={30} className="action-icon delete" /> Delete Post
+                        <EditIcon size={30} className="action-icon edit" 
+                        onClick={() => this.openPostModal()}
+                        /> Edit Post
+                        <RemoveIcon size={30} className="action-icon delete" 
+                        onClick={() => {this.deletePost(post.id)}}/> Delete Post
                     </div>
                     <h1>{post.title}</h1>
                     <div className="post-detail-body">{post.body}</div>
@@ -37,10 +66,32 @@ class PostDetail extends React.Component {
                 :
                 <div>Post not found :-(</div>
                 }
+
+                <Modal className="modal"
+                    overlayClassName="overlay"
+                    isOpen={this.state.addPostModalOpen}
+                    onRequestClose={this.closePostModal}
+                    contentLabel="Modal"
+                    ariaHideApp={false}
+                    >
+                        <Post mode={MODE_EDIT} closePostModal={this.closePostModal} 
+                            post = {post} />
+                 </Modal>
             </div>
         )
     }
 }
 
-export default PostDetail
+function mapStateToProps(state){
+    return {
+    }
+}
+
+function mapDispatchToProps(dispatch){
+    return {
+        deletePost: (postID) => dispatch(deletePost(postID))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(PostDetail)
 

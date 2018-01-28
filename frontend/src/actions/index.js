@@ -4,7 +4,7 @@ export const RECEIVE_CATEGORIES = 'RECEIVE_CATEGORIES' //Implemented
 
 export const RECEIVE_POSTS = 'RECEIVE_POSTS' //Implemented
 export const RECEIVE_POST = 'RECEIVE_POST' //Implemented
-export const ADD_POST = 'ADD_POST' 
+export const ADD_POST = 'ADD_POST' //Implemented
 export const REMOVE_POST = 'REMOVE_POST'
 export const UPDATE_POST = 'UPDATE_POST'
 export const UPVOTE_POST = 'UPVOTE_POST' //Implemented
@@ -47,25 +47,44 @@ export const fetchPostsByCategory = (category) => dispatch => (
     )
 )
 
+export const fetchPost = postID => dispatch => {
+    api.getPost(postID).then(
+        post => api.getComments(postID).then(
+            comments => dispatch(receivePost(post, comments))
+        )
+    )
+}
+
 export const receivePost = (post, comments) => ({
     type: RECEIVE_POST,
     post,
     comments
 })
 
-export const fetchPost = postID => dispatch => {
-    api.getPost(postID).then(
-        post => api.getComments(postID).then(
-            comments => dispatch(receivePost(post, comments))
-        )
-        //post => dispatch(receivePost(post))
+export const addPost = (post) => dispatch => {
+    api.addPost(post).then(
+        post => dispatch(postAdded(post))
+    )    
+ }
+ 
+ export const postAdded = (post) => {
+     return {
+         type: ADD_POST,
+         post
+     }
+ }
+
+ export const deletePost = (postID) => dispatch => {
+     api.deletePost(postID).then(
+         post => dispatch(receiveUpdatedPost(post))
+     )
+ }
+
+export const editPost = (postID, post) => dispatch => {
+    api.editPost(postID, post).then(
+        post => dispatch(receiveUpdatedPost(post))
     )
 }
-
-export const receiveUpdatedPost = post => ({
-    type: UPDATE_POST,
-    post
-})
 
 export const upVotePost = (id, option) => dispatch => {
     api.votePost(id, option).then(
@@ -79,12 +98,10 @@ export const downVotePost = (id, option) => dispatch => {
     )
 }
 
-export function addPost(post) {
-    return {
-        type: ADD_POST,
-        post
-    }
-}
+export const receiveUpdatedPost = post => ({
+    type: UPDATE_POST,
+    post
+})
 
 //COMMENTS ACTIONS
 
@@ -101,18 +118,6 @@ export const commentAdded = comment => {
     }
 }
 
-export const updateComment = (commentID, newComment) => dispatch => {
-    api.editComment(commentID, newComment).then(
-        comment => dispatch(receiveUpdateComment(comment))
-    )
-}
-
-export const deleteComment = (commentID) => dispatch => {
-    api.deleteComment(commentID).then(
-        comment => dispatch(receiveUpdateComment(comment))
-    )
-}
-
 export const fetchComments = postID => dispatch => {
     api.getComments(postID).then(
         comments => dispatch(receiveComments(comments))
@@ -124,6 +129,18 @@ export const receiveComments = (comments) => {
         type: RECEIVE_COMMENTS,
         comments
     }
+}
+
+export const updateComment = (commentID, newComment) => dispatch => {
+    api.editComment(commentID, newComment).then(
+        comment => dispatch(receiveUpdateComment(comment))
+    )
+}
+
+export const deleteComment = (commentID) => dispatch => {
+    api.deleteComment(commentID).then(
+        comment => dispatch(receiveUpdateComment(comment))
+    )
 }
 
 export const voteComment = (commentID, option) => dispatch => {
