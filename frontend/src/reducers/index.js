@@ -5,7 +5,8 @@ import {
     ADD_POST,
     UPDATE_POST,
     ADD_COMMENT,
-    UPDATE_COMMENT
+    UPDATE_COMMENT,
+    REMOVE_COMMENT
 } from '../actions'
 import { combineReducers } from 'redux'
 
@@ -80,7 +81,7 @@ function comments(state = {}, action){
                     ...state[comment.parentId],
                     [comment.id]: {...comment}
                 }
-            }
+            }        
         default:
             return state
     }

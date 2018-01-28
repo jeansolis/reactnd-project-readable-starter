@@ -85,7 +85,7 @@ class PostList extends Component {
 }
 
 function mapStateToProps({posts}, ownProps){
-    let postList = Object.keys(posts).map((key) => posts[key])
+    let postList = Object.keys(posts).map((key) => posts[key]).filter((post) => !post.deleted)
     if (ownProps.sortColumn !== '') {
         postList.sort(sortBy(ownProps.sortOrder + ownProps.sortColumn))
     }

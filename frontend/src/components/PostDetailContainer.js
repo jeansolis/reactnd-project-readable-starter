@@ -47,7 +47,8 @@ function mapStateToProps(state, ownProps){
         post: state.posts[ownProps.match.params.postID],
         comments: (state.comments[postID]) ? 
             Object.keys(state.comments[postID]).map((key) => state.comments[postID][key]).
-            sort(sortBy('-timestamp'))
+                filter((comment) => !comment.deleted).
+                sort(sortBy('-timestamp'))
             : {} 
     }
 }

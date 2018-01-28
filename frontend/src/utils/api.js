@@ -29,7 +29,9 @@ export const addPost = (post) =>
         ...headers,
         'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ ...post })
+        body: JSON.stringify({ 
+            ...post
+        })
     }).then(res => res.json())
 
 export const deletePost = (postID) =>
@@ -47,8 +49,10 @@ export const editPost = (post) =>
             ...headers,
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ ...post })
-    })
+        body: JSON.stringify({ 
+            ...post 
+        })
+    }).then(res => res.json())
 
 export const getAllPosts = () =>
     fetch(`${api}/posts`, { headers })
@@ -85,7 +89,9 @@ export const addComment = (comment) =>
         ...headers,
         'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ ...comment })
+        body: JSON.stringify({ 
+            ...comment
+        })
     }).then(res => res.json())
 
 
@@ -97,23 +103,26 @@ export const deleteComment = (commentID) =>
         }
     }).then(res => res.json())
 
-export const editComment = (comment) => 
-    fetch(`${api}/comments/${comment.commentID}`, {
+export const editComment = (commentID, newComment) => 
+    fetch(`${api}/comments/${commentID}`, {
         method: 'PUT',
         headers: {
             ...headers,
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ ...comment })
-    })
+        body: JSON.stringify({ 
+            ...newComment
+        })
+    }).then(res => res.json())
+    
 
 export const getComment = (commentID) => 
     fetch(`${api}/comments/${commentID}`, {headers})
     .then(res => res.json())
     .then(data => data)
 
-export const getComments = (commentID) => 
-    fetch(`${api}/posts/${commentID}/comments`, {headers})
+export const getComments = (postID) => 
+    fetch(`${api}/posts/${postID}/comments`, {headers})
     .then(res => res.json())
     .then(data => data)
 

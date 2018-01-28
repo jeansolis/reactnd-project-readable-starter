@@ -30,6 +30,7 @@ class CommentList extends React.Component {
 
     render(){
         const comments = this.props.comments
+        console.log(comments)
         return (
             <div className="post-detail-comments-container">
             {(comments.length > 0) ?                      

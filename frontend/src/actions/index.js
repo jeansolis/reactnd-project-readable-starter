@@ -10,10 +10,12 @@ export const UPDATE_POST = 'UPDATE_POST'
 export const UPVOTE_POST = 'UPVOTE_POST' //Implemented
 export const DOWNVOTE_POST = 'DOWNVOTE_POST' //Implemented
 
-export const ADD_COMMENT = 'ADD_COMMENT'
-export const REMOVE_COMMENT = 'REMOVE_COMMENT'
-export const UPDATE_COMMENT = 'UPDATE_COMMENT'
-export const RECEIVE_COMMENTS = 'RECEIVE_COMMENTS'
+export const ADD_COMMENT = 'ADD_COMMENT' //Implemented
+export const REMOVE_COMMENT = 'REMOVE_COMMENT' //Implemented
+export const UPDATE_COMMENT = 'UPDATE_COMMENT' //Implemented
+export const RECEIVE_COMMENTS = 'RECEIVE_COMMENTS' //Implemented
+
+//CATEGORIES ACTIONS
 
 export const receiveCategories = categories => ({
     type: RECEIVE_CATEGORIES,
@@ -25,6 +27,8 @@ export const fetchCategories = () => dispatch => (
         categories => dispatch(receiveCategories(categories))
     )
 )
+
+//POST ACTIONS
 
 export const receivePosts = posts => ({
         type: RECEIVE_POSTS,
@@ -82,6 +86,8 @@ export function addPost(post) {
     }
 }
 
+//COMMENTS ACTIONS
+
 export const addComment = (comment) => dispatch => {
     api.addComment(comment).then(
         comment => dispatch(commentAdded(comment))
@@ -89,11 +95,22 @@ export const addComment = (comment) => dispatch => {
 }
 
 export const commentAdded = comment => {
-    console.log('response', comment)
     return {
         type: ADD_COMMENT,
         comment
     }
+}
+
+export const updateComment = (commentID, newComment) => dispatch => {
+    api.editComment(commentID, newComment).then(
+        comment => dispatch(receiveUpdateComment(comment))
+    )
+}
+
+export const deleteComment = (commentID) => dispatch => {
+    api.deleteComment(commentID).then(
+        comment => dispatch(receiveUpdateComment(comment))
+    )
 }
 
 export const fetchComments = postID => dispatch => {
@@ -115,8 +132,11 @@ export const voteComment = (commentID, option) => dispatch => {
     )
 }
 
-export const receiveUpdateComment = comment => ({
+export const receiveUpdateComment = comment => {
+    return {
     type: UPDATE_COMMENT,
-    comment
-})
+    comment}
+}
+
+
 
