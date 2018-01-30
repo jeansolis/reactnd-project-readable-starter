@@ -5,8 +5,7 @@ import {
     ADD_POST,
     UPDATE_POST,
     ADD_COMMENT,
-    UPDATE_COMMENT,
-    REMOVE_COMMENT
+    UPDATE_COMMENT
 } from '../actions'
 import { combineReducers } from 'redux'
 

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {NavLink, withRouter } from 'react-router-dom'
+import {NavLink } from 'react-router-dom'
 import { capitalize } from '../utils/helper'
 import { connect } from 'react-redux'
 

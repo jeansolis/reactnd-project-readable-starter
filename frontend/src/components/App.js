@@ -1,12 +1,10 @@
 import React, { Component } from 'react'
 import { Route, withRouter } from 'react-router-dom'
-import * as api from '../utils/api'
 import { connect } from 'react-redux'
 
 import CategoryList from './CategoryList'
 import PostListContainer from './PostListContainer'
 import PostDetailContainer from './PostDetailContainer'
-import Post, { MODE_ADD } from './Post'
 
 import { fetchCategories, upVotePost, downVotePost } from '../actions'
 
@@ -33,7 +31,6 @@ class App extends Component {
   }
 
   render() {
-    //console.log(this.props)
     return (
       <main className="app-container">
         

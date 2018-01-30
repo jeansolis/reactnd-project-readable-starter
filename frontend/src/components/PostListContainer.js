@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import * as api from '../utils/api'
 import { connect } from 'react-redux'
 import { fetchAllPosts, fetchPostsByCategory} from '../actions'
 import PostList from './PostList'

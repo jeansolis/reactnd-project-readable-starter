@@ -1,5 +1,3 @@
-import { normalize, schema } from 'normalizr'
-
 const api = "http://localhost:3001"
 //const api = "https://evening-harbor-34965.herokuapp.com"
 

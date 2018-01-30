@@ -4,14 +4,11 @@ import CommentList from './CommentList'
 import { Link } from 'react-router-dom'
 import { connect}  from 'react-redux'
 import { fetchPost, fetchComments } from '../actions'
-import { capitalize } from '../utils/helper'
 import sortBy from 'sort-by'
 
 import ArrowCircleLeft from 'react-icons/lib/fa/arrow-circle-left'
 
-
-
-class PostDetailContainer extends React.Component {
+class PostDetailContainer extends Component {
 
     componentDidMount() {
         if (this.props.match.params.postID){
@@ -48,9 +45,9 @@ function mapStateToProps(state, ownProps){
     return {
         post: state.posts[ownProps.match.params.postID],
         comments: (state.comments[postID]) ? 
-            Object.keys(state.comments[postID]).map((key) => state.comments[postID][key]).
-                filter((comment) => !comment.deleted).
-                sort(sortBy('-timestamp'))
+            Object.keys(state.comments[postID]).map((key) => state.comments[postID][key])
+                .filter((comment) => !comment.deleted)
+                .sort(sortBy('-timestamp'))
             : {} 
     }
 }

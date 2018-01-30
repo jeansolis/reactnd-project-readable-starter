@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import serializeForm from 'form-serialize'
 import { voteComment, updateComment, deleteComment } from '../actions'
 import moment from 'moment'
 import Modal from 'react-modal'
@@ -16,7 +15,7 @@ import CancelIcon from 'react-icons/lib/fa/ban'
 const MODE_VIEW = 'VIEW'
 const MODE_EDIT = 'EDIT'
 
-class Comment extends React.Component {
+class Comment extends Component {
 
     state = {
         mode: MODE_VIEW,

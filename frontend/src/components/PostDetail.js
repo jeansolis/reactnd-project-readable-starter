@@ -10,9 +10,8 @@ import EditIcon from 'react-icons/lib/fa/edit'
 import RemoveIcon from 'react-icons/lib/fa/trash'
 import ThumbsUpIcon from 'react-icons/lib/fa/thumbs-o-up'
 import ThumbsDownIcon from 'react-icons/lib/fa/thumbs-o-down'
-import PlusCircle from 'react-icons/lib/fa/plus-circle'
 
-class PostDetail extends React.Component {
+class PostDetail extends Component {
 
     state = {
         addPostModalOpen: false,

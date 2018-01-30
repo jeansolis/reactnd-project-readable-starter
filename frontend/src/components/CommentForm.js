@@ -4,7 +4,7 @@ import serializeForm from 'form-serialize'
 import { addComment } from '../actions'
 import uuidv4 from 'uuid'
 
-class CommentForm extends React.Component {
+class CommentForm extends Component {
 
     state = {
         author: '',

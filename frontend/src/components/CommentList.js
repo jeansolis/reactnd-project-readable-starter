@@ -1,13 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import Modal from 'react-modal'
-import serializeForm from 'form-serialize'
 import CommentForm from './CommentForm'
 import Comment from './Comment'
 
-import PlusCircle from 'react-icons/lib/fa/plus-circle'
-
-class CommentList extends React.Component {
+class CommentList extends Component {
 
     state = {
         addCommentModalOpen: false
@@ -54,17 +50,6 @@ class CommentList extends React.Component {
         )
     }
 
-}
-
-function mapStateToProps(){
-    return {
-    }
-}
-
-function mapDispatchToProps(dispatch){
-    return {
-
-    }
 }
 
 export default connect()(CommentList)
