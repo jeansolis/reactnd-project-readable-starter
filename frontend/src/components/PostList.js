@@ -133,7 +133,8 @@ class PostList extends Component {
             ariaHideApp={false}
             >
                 <Post mode={this.state.modalMode} closePostModal={this.closePostModal} 
-                post={this.state.selectedPost}/>
+                post={this.state.selectedPost} 
+                category={this.props.category !== 'all' ? this.props.category : ''} />
             </Modal>
             
             <Modal className="confirm-modal"

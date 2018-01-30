@@ -15,6 +15,7 @@ class Post extends Component {
     static propTypes = {
         mode: PropTypes.string.isRequired,
         post: PropTypes.object,
+        category: PropTypes.string.isRequired,
         categories: PropTypes.array.isRequired,
         addPost: PropTypes.func.isRequired,
         editPost: PropTypes.func.isRequired
@@ -56,7 +57,7 @@ class Post extends Component {
     }    
 
     render(){
-        const {mode, categories, post} = this.props
+        const {mode, categories, post, category} = this.props
         return(
             <div className="post-form">
               <h2>{mode===MODE_ADD ?
@@ -66,7 +67,7 @@ class Post extends Component {
                   } Post 
             </h2>
               <form onSubmit={this.handleSubmit} >
-                  <select name="category" defaultValue={mode===MODE_EDIT ? post.category : '' } 
+                  <select name="category" defaultValue={mode===MODE_EDIT ? post.category : category } 
                     disabled={mode===MODE_EDIT} required>
                       {mode===MODE_ADD ?
                         <option value="">Select a category....</option>

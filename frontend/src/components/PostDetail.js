@@ -94,7 +94,7 @@ class PostDetail extends Component {
                     ariaHideApp={false}
                     >
                         <Post mode={MODE_EDIT} closePostModal={this.closePostModal} 
-                            post = {post} />
+                            post = {post} category={post.category} />
                  </Modal>
 
                  <Modal className="confirm-modal"
