@@ -76,7 +76,7 @@ class PostList extends Component {
                         {label: 'comments', source: 'commentCount'},
                         {label: 'date', source: 'timestamp'},
                         {label: 'score', source: 'voteScore'}];
-        
+
         return (
         /* Post List */
         <div className="post-list-section">
@@ -122,9 +122,9 @@ class PostList extends Component {
                 </tbody>
             </table>
             :
-            <span>Category is empty</span>
-             } 
-             <PlusCircle size={40} className="action-icon add" onClick={() => this.openPostModal(MODE_ADD)}/>
+                <span className="category-empty">Category is empty</span>
+            } 
+            <PlusCircle size={40} className="action-icon add" onClick={() => this.openPostModal(MODE_ADD)}/>
 
             <Modal className="add-post-modal"
             overlayClassName="overlay"

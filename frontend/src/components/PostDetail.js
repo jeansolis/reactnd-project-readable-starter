@@ -82,31 +82,31 @@ class PostDetail extends Component {
                         <ThumbsDownIcon size={25} className="action-icon down-vote" 
                             onClick={() => this.props.downVote(post.id)} />
                     </div>
-                </div>
-                :
-                <div>Post not found :-(</div>
-                }
-
-                <Modal className="add-post-modal"
-                    overlayClassName="overlay"
-                    isOpen={this.state.addPostModalOpen}
-                    contentLabel="Modal"
-                    ariaHideApp={false}
+                    
+                    <Modal className="add-post-modal"
+                        overlayClassName="overlay"
+                        isOpen={this.state.addPostModalOpen}
+                        contentLabel="Modal"
+                        ariaHideApp={false}
                     >
                         <Post mode={MODE_EDIT} closePostModal={this.closePostModal} 
                             post = {post} category={post.category} />
-                 </Modal>
+                    </Modal>
 
-                 <Modal className="confirm-modal"
-                    overlayClassName="overlay"
-                    isOpen={this.state.confirmModalOpen}
-                    contentLabel="Modal"
-                    ariaHideApp={false}
+                    <Modal className="confirm-modal"
+                        overlayClassName="overlay"
+                        isOpen={this.state.confirmModalOpen}
+                        contentLabel="Modal"
+                        ariaHideApp={false}
                     >
-                    <ConfirmModal message="Do you really want to delete this post?" 
-                    yesHandler={() => this.deletePost(post.id)} 
-                    noHandler={this.closeConfirmModal}/>
-                </Modal>
+                        <ConfirmModal message="Do you really want to delete this post?" 
+                        yesHandler={() => this.deletePost(post.id)} 
+                        noHandler={this.closeConfirmModal}/>
+                    </Modal>
+                </div>
+                :
+                <div className="post-not-found">Post not found :-(</div>
+                }
             </div>
         )
     }

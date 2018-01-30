@@ -143,6 +143,12 @@ button {
   text-align: center
 }
 
+.category-empty {
+  color: red;
+  display: block;
+  padding: 10px 0 10px 0;
+}
+
 .category-list {
   /*border-radius: 25px;*/
   box-shadow: 5px 5px #6C6969;
@@ -257,5 +263,10 @@ button {
 .post-list-table td {
   border: 1px solid;
   /* width: 100%; */
+}
+
+.post-not-found {
+  color: red;
+  padding: 10px 0 0 0 
 }
 

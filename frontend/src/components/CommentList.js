@@ -6,7 +6,7 @@ import Comment from './Comment'
 class CommentList extends Component {
 
     state = {
-        addCommentModalOpen: false
+        addCommentModalOpen: false,
     }
 
     addComment = () => {
@@ -18,10 +18,10 @@ class CommentList extends Component {
     }
 
     render(){
-        const comments = this.props.comments
+        const {comments, post} = this.props
         return (
             <div className="post-detail-comments-container">
-            {(comments.length > 0) ?                      
+            {comments && comments.length > 0 ?                      
                 <div>
                     <h2>Comments ({comments.length}) </h2>
                     <CommentForm post={this.props.post} />
@@ -32,10 +32,14 @@ class CommentList extends Component {
                         )}
                     </ul>
                 </div>
-                :
+            :
                 <div>
-                    <div className="no-comments-label">No comments yet for this post, be the first to comment!</div>
-                    <CommentForm post={this.props.post} />
+                    {post ?
+                    <span><div className="no-comments-label">No comments yet for this post, be the first to comment!</div>
+                    <CommentForm post={this.props.post} /></span>
+                    :
+                    <span></span>
+                    }
                 </div>
             }
             </div>
