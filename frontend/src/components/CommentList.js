@@ -45,7 +45,7 @@ class CommentList extends React.Component {
                 </div>
                 :
                 <div>
-                    <div>No comments yet for this post, be the first to comment!</div>
+                    <div className="no-comments-label">No comments yet for this post, be the first to comment!</div>
                     <CommentForm post={this.props.post} />
                 </div>
             }

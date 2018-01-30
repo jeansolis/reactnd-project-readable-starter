@@ -1,30 +1,39 @@
-.App {
-  text-align: center;
+input[type=text], textarea, select {
+  display: block;
+  margin: 5px 0;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+input[name=title]{
+  width: 300px;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+input[type=button] {
+  padding: 4px 8px;
+  margin: 0 4px;
+  font-weight: bold;
+  cursor: pointer;
 }
 
-.App-title {
-  font-size: 1.5em;
+input[type=button].button-confirm-yes {
+  background-color: #42AF3E;
 }
 
-.App-intro {
-  font-size: large;
+input[type=button].button-confirm-no {
+  background-color: #BD2424;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+textarea[name=body].post-body {
+  height: 200px;
+  width: 300px;
+}
+
+textarea[name=body].comment-body {
+  height: 70px;
+  width: 400px;
+}
+
+button {
+  margin: 5px 5px 0 0;
 }
 
 .action-icon {
@@ -52,10 +61,86 @@
   color: #EEA211
 }
 
+.action-icon.save {
+  color: #0931CC;
+}
+
+.action-icon.cancel {
+  color: red;
+}
+
 .app-container {
   padding: 0 10px;
   margin: auto;
   width: 1024px;
+}
+
+.overlay {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  background-color: rgba(255, 255, 255, 0.75);
+}
+
+.add-post-modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;  
+  border: 1px solid rgb(204, 204, 204);
+  background: rgb(255, 255, 255);
+  overflow: auto;
+  border-radius: 4px;
+  outline: none;
+  padding: 20px;
+  border-radius: 3px;
+  box-shadow: 0 3px 8px 0 rgba(0,0,0,.24), 0 3px 12px 0 rgba(0,0,0,.12);
+  min-width: 200px;
+  height: 410px;
+  -ms-transform: translateX(-50%) translateY(-50%);
+  -webkit-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
+}
+
+.button-add, .button-cancel{
+  padding: 4px 8px;
+  margin: 12px 4px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.button-add {
+  background-color: #42AF3E;
+}
+
+.button-cancel {
+  background-color: #BD2424;
+}
+
+.confirm-modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border: 1px solid rgb(204, 204, 204);
+  background: rgb(255, 255, 255);
+  overflow: auto;
+  border-radius: 4px;
+  outline: none;
+  padding: 20px;
+  border-radius: 3px;
+  box-shadow: 0 3px 8px 0 rgba(0,0,0,.24), 0 3px 12px 0 rgba(0,0,0,.12);
+  min-width: 300px;
+  max-width: 350px;
+  width: 350px;
+  height: 65px;
+  -ms-transform: translateX(-50%) translateY(-50%);
+  -webkit-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
+}
+
+.confirm-modal-buttons, .add-post-modal-buttons {
+  text-align: center
 }
 
 .category-list {
@@ -103,30 +188,9 @@
   padding: 0 0 5px 0;
 }
 
-.overlay {
-  position: fixed;
-  top: 0px;
-  left: 0px;
-  right: 0px;
-  bottom: 0px;
-  background-color: rgba(255, 255, 255, 0.75);
-}
-
-.modal {
-  position: absolute;
-  top: 40px;
-  left: 200px;
-  right: 200px;
-  bottom: 40px;
-  border: 1px solid rgb(204, 204, 204);
-  background: rgb(255, 255, 255);
-  overflow: auto;
-  border-radius: 4px;
-  outline: none;
-  padding: 20px;
-  border-radius: 3px;
-  box-shadow: 0 3px 8px 0 rgba(0,0,0,.24), 0 3px 12px 0 rgba(0,0,0,.12);
-  min-width: 500px;
+.no-comments-label{
+  color: red;
+  padding: 10px 0 0 0 
 }
 
 .post-comment-author-date-container {
@@ -167,6 +231,11 @@
 .post-detail-body {
   /*border: 1px solid black; */
   margin: 20px;
+}
+
+.post-detail-container {
+  /*border: 1px solid black; */
+  margin: 20px 0;
 }
 
 .post-list-section {

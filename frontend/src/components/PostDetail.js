@@ -81,7 +81,7 @@ class PostDetail extends React.Component {
                 <div>Post not found :-(</div>
                 }
 
-                <Modal className="modal"
+                <Modal className="add-post-modal"
                     overlayClassName="overlay"
                     isOpen={this.state.addPostModalOpen}
                     contentLabel="Modal"
@@ -91,7 +91,7 @@ class PostDetail extends React.Component {
                             post = {post} />
                  </Modal>
 
-                 <Modal className="modal"
+                 <Modal className="confirm-modal"
                     overlayClassName="overlay"
                     isOpen={this.state.confirmModalOpen}
                     contentLabel="Modal"

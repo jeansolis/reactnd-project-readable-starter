@@ -70,24 +70,23 @@ class Post extends Component {
                         </option>
                       ))}
                   </select>
-                  <br />
                   <input type="text" placeholder="Type your title..." name="title" 
                   defaultValue={mode===MODE_EDIT ? post.title : '' } required />
-                  <br />
                   <textarea placeholder="Type your thoughts..." name="body"
-                  defaultValue={mode===MODE_EDIT ? post.body : '' } required></textarea>
-                  <br />
+                  defaultValue={mode===MODE_EDIT ? post.body : '' } required className="post-body"></textarea>                  
                   <input type="text" placeholder="Type your name..." name="author" 
                   defaultValue={mode===MODE_EDIT ? post.author : '' }
                   disabled={mode===MODE_EDIT} required/>
-                  <br/><br/>
-                  <button type="submit" >
+                  <div className="add-post-modal-buttons">
+                  <button type="submit" className="button-add" >
                     {mode===MODE_ADD ?
                         <span> Add</span>
                     :
                         <span> Edit</span>
                     } Post</button>
-                  <button type="button" onClick={this.props.closePostModal}>Cancel</button>
+                  <button type="button" onClick={this.props.closePostModal}
+                  className="button-cancel">Cancel</button>
+                </div>
               </form>
             </div>
         )

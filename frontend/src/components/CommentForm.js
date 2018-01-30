@@ -43,14 +43,12 @@ class CommentForm extends React.Component {
                         author: e.target.value
                     })
                 }} required/>
-                <br />
                 <textarea placeholder="Type your comment..." name="body"
                 value={body} onChange={(e) => {
                     this.setState({
                         body: e.target.value
                     })
-                }} required></textarea>
-                <br/><br/>
+                }} required className="comment-body"></textarea>
                 <button type="submit">Add Comment</button>
                 {/* <PlusCircle size={30} className="action-icon add" onClick={() => this.setState({addCommentModalOpen: true})}/> 
                 Add a new comment */}

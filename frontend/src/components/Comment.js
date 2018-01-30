@@ -86,7 +86,8 @@ class Comment extends React.Component {
                         comment.body
                     :
                     <textarea placeholder="Type your comment..." name="body" 
-                        defaultValue={comment.body} ref={(input) => this.body = input}>
+                        defaultValue={comment.body} ref={(input) => this.body = input} 
+                        className="comment-body">
                     </textarea>
                     }
                 </div>
@@ -110,12 +111,12 @@ class Comment extends React.Component {
                     :
                     <span>
                         <SaveIcon size={20} className="action-icon save" onClick={this.updateComment} />Update Comment
-                        <CancelIcon size={20} className="action-icon save" onClick={this.cancelEdit} />Cancel Update
+                        <CancelIcon size={20} className="action-icon cancel" onClick={this.cancelEdit} />Cancel Update
                     </span>
                     }
                 </div>
 
-                <Modal className="modal"
+                <Modal className="confirm-modal"
                     overlayClassName="overlay"
                     isOpen={this.state.confirmModalOpen}
                     contentLabel="Modal"

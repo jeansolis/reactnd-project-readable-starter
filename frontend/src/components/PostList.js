@@ -119,7 +119,7 @@ class PostList extends Component {
              } 
              <PlusCircle size={40} className="action-icon add" onClick={() => this.openPostModal(MODE_ADD)}/>
 
-            <Modal className="modal"
+            <Modal className="add-post-modal"
             overlayClassName="overlay"
             isOpen={this.state.addPostModalOpen}
             contentLabel="Modal"
@@ -129,7 +129,7 @@ class PostList extends Component {
                 post={this.state.selectedPost}/>
             </Modal>
             
-            <Modal className="modal"
+            <Modal className="confirm-modal"
              overlayClassName="overlay"
              isOpen={this.state.confirmModalOpen}
              contentLabel="Modal"
