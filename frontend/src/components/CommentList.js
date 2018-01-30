@@ -9,19 +9,12 @@ class CommentList extends Component {
         addCommentModalOpen: false
     }
 
-    componentDidMount(){
-    }
-
     addComment = () => {
         this.closeCommentModal()
     }
 
     closeCommentModal = () => {
         this.setState({addCommentModalOpen: false})
-    }
-
-    onCloseCommentModal(){
-        
     }
 
     render(){
@@ -34,7 +27,7 @@ class CommentList extends Component {
                     <CommentForm post={this.props.post} />
                     <ul className="comments-list">
                         {comments.map((comment) => (
-                            <Comment comment={comment} key={comment.id} />
+                            <Comment comment={comment} key={comment.id}/>
                         )
                         )}
                     </ul>
@@ -45,7 +38,6 @@ class CommentList extends Component {
                     <CommentForm post={this.props.post} />
                 </div>
             }
-
             </div>
         )
     }

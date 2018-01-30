@@ -5,10 +5,17 @@ import { Link } from 'react-router-dom'
 import { connect}  from 'react-redux'
 import { fetchPost, fetchComments } from '../actions'
 import sortBy from 'sort-by'
+import PropTypes from 'prop-types'
 
 import ArrowCircleLeft from 'react-icons/lib/fa/arrow-circle-left'
 
 class PostDetailContainer extends Component {
+
+    static propTypes = {
+        post: PropTypes.object,
+        getPost: PropTypes.func.isRequired,
+        getComments: PropTypes.func.isRequired
+    }
 
     componentDidMount() {
         if (this.props.match.params.postID){
@@ -18,7 +25,6 @@ class PostDetailContainer extends Component {
     }
 
     render() {
-        //console.log(this.props)
         const {post, comments, history} = this.props
         return (
              <div className="post-detail-container">

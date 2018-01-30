@@ -4,6 +4,7 @@ import { voteComment, updateComment, deleteComment } from '../actions'
 import moment from 'moment'
 import Modal from 'react-modal'
 import ConfirmModal from './ConfirmModal'
+import PropTypes from 'prop-types'
 
 import ThumbsUpIcon from 'react-icons/lib/fa/thumbs-o-up'
 import ThumbsDownIcon from 'react-icons/lib/fa/thumbs-o-down'
@@ -16,6 +17,13 @@ const MODE_VIEW = 'VIEW'
 const MODE_EDIT = 'EDIT'
 
 class Comment extends Component {
+
+    static propTypes = {
+        comment: PropTypes.object.isRequired,
+        voteComment: PropTypes.func.isRequired,
+        deleteComment: PropTypes.func.isRequired,
+        editComment: PropTypes.func.isRequired
+    }
 
     state = {
         mode: MODE_VIEW,
@@ -31,7 +39,6 @@ class Comment extends Component {
     }
 
     deleteComment = () => {
-        //TODO: Ask for confirmation first.
         const {comment} = this.props
         this.props.deleteComment(comment.id)
     }

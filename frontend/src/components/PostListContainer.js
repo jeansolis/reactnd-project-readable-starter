@@ -2,11 +2,16 @@ import React, {Component} from 'react'
 import { connect } from 'react-redux'
 import { fetchAllPosts, fetchPostsByCategory} from '../actions'
 import PostList from './PostList'
+import PropTypes from 'prop-types'
 
 class PostListContainer extends Component {
     
     static propTypes = {
-
+        category: PropTypes.string.isRequired,
+        upVote: PropTypes.func.isRequired,
+        downVote: PropTypes.func.isRequired,
+        fetchAllPosts: PropTypes.func.isRequired,
+        fetchPostsByCategory: PropTypes.func.isRequired
     }
 
     state = {
@@ -61,7 +66,6 @@ class PostListContainer extends Component {
 
 function mapStateToProps({posts}, state){
     return {
-        // posts: Object.keys(posts).map((key) => posts[key])
     }
   }
   
@@ -72,5 +76,4 @@ function mapStateToProps({posts}, state){
     }
   }
 
-//export default PostListContainer
 export default connect(mapStateToProps, mapDispatchToProps)(PostListContainer);

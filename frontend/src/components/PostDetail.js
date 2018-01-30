@@ -5,6 +5,7 @@ import Modal from 'react-modal'
 import Post, {MODE_EDIT} from './Post'
 import { deletePost } from '../actions'
 import ConfirmModal from './ConfirmModal'
+import PropTypes from 'prop-types'
 
 import EditIcon from 'react-icons/lib/fa/edit'
 import RemoveIcon from 'react-icons/lib/fa/trash'
@@ -12,6 +13,13 @@ import ThumbsUpIcon from 'react-icons/lib/fa/thumbs-o-up'
 import ThumbsDownIcon from 'react-icons/lib/fa/thumbs-o-down'
 
 class PostDetail extends Component {
+
+    static propTypes = {
+        post: PropTypes.object,
+        history: PropTypes.object.isRequired,
+        upVote: PropTypes.func.isRequired,
+        downVote: PropTypes.func.isRequired
+    }
 
     state = {
         addPostModalOpen: false,
@@ -43,7 +51,6 @@ class PostDetail extends Component {
     }
 
     deletePost = (postID) => {
-        //TODO: Ask for confirmation
         this.props.deletePost(postID)
         //Navigate to posts list
         this.props.history.push("/")

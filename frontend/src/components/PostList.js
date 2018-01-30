@@ -8,6 +8,7 @@ import moment from 'moment'
 import Post, {MODE_ADD, MODE_EDIT} from './Post'
 import { deletePost } from '../actions'
 import ConfirmModal from './ConfirmModal'
+import PropTypes from 'prop-types'
 
 import EditIcon from 'react-icons/lib/fa/edit'
 import RemoveIcon from 'react-icons/lib/fa/trash'
@@ -20,7 +21,14 @@ import PlusCircle from 'react-icons/lib/fa/plus-circle'
 class PostList extends Component {
     
     static propTypes = {
-
+        posts: PropTypes.array,
+        category: PropTypes.string.isRequired,
+        deletePost: PropTypes.func.isRequired,
+        upVote: PropTypes.func.isRequired,
+        downVote: PropTypes.func.isRequired,
+        sortByColumn: PropTypes.func.isRequired,
+        sortColumn: PropTypes.string.isRequired,
+        sortOrder: PropTypes.string.isRequired
     }
 
     state = {
@@ -58,7 +66,6 @@ class PostList extends Component {
     }
 
     deletePost = (postID) => {
-        //TODO: Ask for confirmation
         this.props.deletePost(postID)
         this.closeConfirmModal()
     }
@@ -161,5 +168,4 @@ function mapDispatchToProps(dispatch){
     }
 }
   
-//export default PostList
 export default connect(mapStateToProps, mapDispatchToProps)(PostList);

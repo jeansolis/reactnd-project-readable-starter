@@ -1,5 +1,4 @@
 const api = "http://localhost:3001"
-//const api = "https://evening-harbor-34965.herokuapp.com"
 
 // Generate a unique token for storing data on the backend server.
 let token = localStorage.token

@@ -1,19 +1,19 @@
 import * as api from '../utils/api'
 
-export const RECEIVE_CATEGORIES = 'RECEIVE_CATEGORIES' //Implemented
+export const RECEIVE_CATEGORIES = 'RECEIVE_CATEGORIES' 
 
-export const RECEIVE_POSTS = 'RECEIVE_POSTS' //Implemented
-export const RECEIVE_POST = 'RECEIVE_POST' //Implemented
-export const ADD_POST = 'ADD_POST' //Implemented
+export const RECEIVE_POSTS = 'RECEIVE_POSTS' 
+export const RECEIVE_POST = 'RECEIVE_POST' 
+export const ADD_POST = 'ADD_POST' 
 export const REMOVE_POST = 'REMOVE_POST'
 export const UPDATE_POST = 'UPDATE_POST'
-export const UPVOTE_POST = 'UPVOTE_POST' //Implemented
-export const DOWNVOTE_POST = 'DOWNVOTE_POST' //Implemented
+export const UPVOTE_POST = 'UPVOTE_POST' 
+export const DOWNVOTE_POST = 'DOWNVOTE_POST' 
 
-export const ADD_COMMENT = 'ADD_COMMENT' //Implemented
-export const REMOVE_COMMENT = 'REMOVE_COMMENT' //Implemented
-export const UPDATE_COMMENT = 'UPDATE_COMMENT' //Implemented
-export const RECEIVE_COMMENTS = 'RECEIVE_COMMENTS' //Implemented
+export const ADD_COMMENT = 'ADD_COMMENT' 
+export const REMOVE_COMMENT = 'REMOVE_COMMENT' 
+export const UPDATE_COMMENT = 'UPDATE_COMMENT' 
+export const RECEIVE_COMMENTS = 'RECEIVE_COMMENTS' 
 
 //CATEGORIES ACTIONS
 

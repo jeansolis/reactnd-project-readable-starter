@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Route, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 
 import CategoryList from './CategoryList'
 import PostListContainer from './PostListContainer'
@@ -13,7 +14,9 @@ import '../App.css';
 class App extends Component {
 
   static propTypes = {
-    
+    upVote: PropTypes.func.isRequired,
+    downVote: PropTypes.func.isRequired,
+    fetchCategories: PropTypes.func.isRequired
   }
 
   componentDidMount(){
@@ -77,5 +80,3 @@ function mapDispatchToProps(dispatch){
 }
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
-//export default connect(mapStateToProps, mapDispatchToProps)(App)
-//export default App;

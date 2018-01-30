@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import serializeForm from 'form-serialize'
 import uuidv4 from 'uuid'
 import { capitalize } from '../utils/helper'
+import PropTypes from 'prop-types'
 
 import { addPost, editPost } from '../actions'
 
@@ -10,6 +11,14 @@ export const MODE_ADD = 'ADD'
 export const MODE_EDIT = 'EDIT'
 
 class Post extends Component {
+
+    static propTypes = {
+        mode: PropTypes.string.isRequired,
+        post: PropTypes.object,
+        categories: PropTypes.array.isRequired,
+        addPost: PropTypes.func.isRequired,
+        editPost: PropTypes.func.isRequired
+    }
 
     handleSubmit = (e) => {
         e.preventDefault()

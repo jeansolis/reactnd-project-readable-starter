@@ -3,8 +3,14 @@ import { connect } from 'react-redux'
 import serializeForm from 'form-serialize'
 import { addComment } from '../actions'
 import uuidv4 from 'uuid'
+import PropTypes from 'prop-types'
 
 class CommentForm extends Component {
+
+    static propTypes = {
+        post: PropTypes.object,
+        addComment: PropTypes.func.isRequired
+    }
 
     state = {
         author: '',
@@ -15,7 +21,7 @@ class CommentForm extends Component {
         e.preventDefault()
         const comment = serializeForm(e.target, {hash: true})
 
-        //validate data
+        //Validate data
         if(comment.author && comment.author.length > 0 &&
         comment.body && comment.body.length > 0) {
             //Add additional required fields
@@ -50,8 +56,6 @@ class CommentForm extends Component {
                     })
                 }} required className="comment-body"></textarea>
                 <button type="submit">Add Comment</button>
-                {/* <PlusCircle size={30} className="action-icon add" onClick={() => this.setState({addCommentModalOpen: true})}/> 
-                Add a new comment */}
             </form>
         )
     }
