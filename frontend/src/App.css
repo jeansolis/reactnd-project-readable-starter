@@ -60,7 +60,7 @@ button {
 .action-icon.add {
   color: #EEA211
 }
-
+ 
 .action-icon.save {
   color: #0931CC;
 }
@@ -72,7 +72,7 @@ button {
 .app-container {
   padding: 0 10px;
   margin: auto;
-  width: 1024px;
+  width: 1096px;
 }
 
 .overlay {
@@ -242,7 +242,7 @@ button {
   display: inline-block;
   text-align: center;
   vertical-align: top;
-  width: 824px;
+  width: 860px;
 }
 
 .post-list-column-header {
