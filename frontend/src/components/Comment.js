@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 import serializeForm from 'form-serialize'
 import { voteComment, updateComment, deleteComment } from '../actions'
 import moment from 'moment'
+import Modal from 'react-modal'
+import ConfirmModal from './ConfirmModal'
 
 import ThumbsUpIcon from 'react-icons/lib/fa/thumbs-o-up'
 import ThumbsDownIcon from 'react-icons/lib/fa/thumbs-o-down'
@@ -17,7 +19,8 @@ const MODE_EDIT = 'EDIT'
 class Comment extends React.Component {
 
     state = {
-        mode: MODE_VIEW
+        mode: MODE_VIEW,
+        confirmModalOpen: false
     }
 
     upVoteComment = (commentID) => {
@@ -28,7 +31,7 @@ class Comment extends React.Component {
         this.props.voteComment(commentID, 'downVote')
     }
 
-    deleteComment = (commentID) => {
+    deleteComment = () => {
         //TODO: Ask for confirmation first.
         const {comment} = this.props
         this.props.deleteComment(comment.id)
@@ -61,6 +64,18 @@ class Comment extends React.Component {
         })
     }
 
+    openConfirmModal = () => {
+        this.setState({
+            confirmModalOpen: true,
+        })
+    }
+
+    closeConfirmModal = () => {
+        this.setState({
+            confirmModalOpen: false
+        })
+    }
+
     render(){
         const {comment} = this.props
         return(
@@ -90,7 +105,7 @@ class Comment extends React.Component {
                     {this.state.mode === MODE_VIEW ? 
                     <span>
                         <EditIcon size={20} className="action-icon edit" onClick={this.editComment} />Edit Comment
-                        <RemoveIcon size={20} className="action-icon delete" onClick={this.deleteComment} /> Delete Comment
+                        <RemoveIcon size={20} className="action-icon delete" onClick={this.openConfirmModal} /> Delete Comment
                     </span>
                     :
                     <span>
@@ -99,6 +114,17 @@ class Comment extends React.Component {
                     </span>
                     }
                 </div>
+
+                <Modal className="modal"
+                    overlayClassName="overlay"
+                    isOpen={this.state.confirmModalOpen}
+                    contentLabel="Modal"
+                    ariaHideApp={false}
+                    >
+                    <ConfirmModal message="Do you really want to delete this comment?" 
+                    yesHandler={this.deleteComment} 
+                    noHandler={this.closeConfirmModal}/>
+                </Modal>
             </li>
         )
     }

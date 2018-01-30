@@ -7,6 +7,7 @@ import sortBy from 'sort-by'
 import moment from 'moment'
 import Post, {MODE_ADD, MODE_EDIT} from './Post'
 import { deletePost } from '../actions'
+import ConfirmModal from './ConfirmModal'
 
 import EditIcon from 'react-icons/lib/fa/edit'
 import RemoveIcon from 'react-icons/lib/fa/trash'
@@ -25,7 +26,8 @@ class PostList extends Component {
     state = {
         addPostModalOpen: false,
         modalMode: MODE_ADD,
-        selectedPost: null
+        selectedPost: null,
+        confirmModalOpen: false
     }
 
     openPostModal = (mode, post) => {
@@ -42,9 +44,23 @@ class PostList extends Component {
         })
     }
 
+    openConfirmModal = (post) => {
+        this.setState({
+            confirmModalOpen: true,
+            selectedPost: post
+        })
+    }
+
+    closeConfirmModal = () => {
+        this.setState({
+            confirmModalOpen: false
+        })
+    }
+
     deletePost = (postID) => {
         //TODO: Ask for confirmation
         this.props.deletePost(postID)
+        this.closeConfirmModal()
     }
 
     render(){
@@ -88,7 +104,7 @@ class PostList extends Component {
                             <EditIcon size={30} className="action-icon edit" 
                                 onClick={() => this.openPostModal(MODE_EDIT, post)} />
                             <RemoveIcon size={30} className="action-icon delete" 
-                                onClick={() => this.deletePost(post.id) }/>
+                                onClick={() => this.openConfirmModal(post) }/>
                             <ThumbsUpIcon size={30} className="action-icon up-vote" 
                                 onClick={() => this.props.upVote(post.id)} />
                             <ThumbsDownIcon size={30} className="action-icon down-vote" 
@@ -106,13 +122,24 @@ class PostList extends Component {
             <Modal className="modal"
             overlayClassName="overlay"
             isOpen={this.state.addPostModalOpen}
-            onRequestClose={this.closePostModal}
             contentLabel="Modal"
             ariaHideApp={false}
             >
                 <Post mode={this.state.modalMode} closePostModal={this.closePostModal} 
                 post={this.state.selectedPost}/>
             </Modal>
+            
+            <Modal className="modal"
+             overlayClassName="overlay"
+             isOpen={this.state.confirmModalOpen}
+             contentLabel="Modal"
+             ariaHideApp={false}
+             >
+                <ConfirmModal message="Do you really want to delete this post?" 
+                yesHandler={() => this.deletePost(this.state.selectedPost.id)} 
+                noHandler={this.closeConfirmModal}/>
+             </Modal>
+
         </div>
         )
     }

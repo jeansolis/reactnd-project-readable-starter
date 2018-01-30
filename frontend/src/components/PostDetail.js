@@ -4,6 +4,7 @@ import moment from 'moment'
 import Modal from 'react-modal'
 import Post, {MODE_EDIT} from './Post'
 import { deletePost } from '../actions'
+import ConfirmModal from './ConfirmModal'
 
 import EditIcon from 'react-icons/lib/fa/edit'
 import RemoveIcon from 'react-icons/lib/fa/trash'
@@ -14,7 +15,8 @@ import PlusCircle from 'react-icons/lib/fa/plus-circle'
 class PostDetail extends React.Component {
 
     state = {
-        addPostModalOpen: false
+        addPostModalOpen: false,
+        confirmModalOpen: false
     }
 
     openPostModal = () => {
@@ -26,6 +28,18 @@ class PostDetail extends React.Component {
     closePostModal = () => {
         this.setState({
             addPostModalOpen: false
+        })
+    }
+
+    openConfirmModal = () => {
+        this.setState({
+            confirmModalOpen: true,
+        })
+    }
+
+    closeConfirmModal = () => {
+        this.setState({
+            confirmModalOpen: false
         })
     }
 
@@ -47,7 +61,7 @@ class PostDetail extends React.Component {
                         onClick={() => this.openPostModal()}
                         /> Edit Post
                         <RemoveIcon size={30} className="action-icon delete" 
-                        onClick={() => {this.deletePost(post.id)}}/> Delete Post
+                        onClick={() => {this.openConfirmModal()}}/> Delete Post
                     </div>
                     <h1>{post.title}</h1>
                     <div className="post-detail-body">{post.body}</div>
@@ -70,13 +84,23 @@ class PostDetail extends React.Component {
                 <Modal className="modal"
                     overlayClassName="overlay"
                     isOpen={this.state.addPostModalOpen}
-                    onRequestClose={this.closePostModal}
                     contentLabel="Modal"
                     ariaHideApp={false}
                     >
                         <Post mode={MODE_EDIT} closePostModal={this.closePostModal} 
                             post = {post} />
                  </Modal>
+
+                 <Modal className="modal"
+                    overlayClassName="overlay"
+                    isOpen={this.state.confirmModalOpen}
+                    contentLabel="Modal"
+                    ariaHideApp={false}
+                    >
+                    <ConfirmModal message="Do you really want to delete this post?" 
+                    yesHandler={() => this.deletePost(post.id)} 
+                    noHandler={this.closeConfirmModal}/>
+                </Modal>
             </div>
         )
     }
