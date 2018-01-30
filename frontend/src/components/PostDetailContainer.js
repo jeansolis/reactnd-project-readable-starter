@@ -26,10 +26,12 @@ class PostDetailContainer extends React.Component {
         return (
              <div className="post-detail-container">
                  {/*onClick={() => history.goBack()} */}
-                 <Link to={`/${this.props.match.params.category}`}>
+                 {/* <Link to={`/${this.props.match.params.category}`}> */}
+                 <Link to="/">
                     <ArrowCircleLeft size={30} 
                      className="action-icon go-back" />
-                     Return to {capitalize(this.props.match.params.category)} posts
+                     {/* Return to {capitalize(this.props.match.params.category)} posts */}
+                     Return to All posts
                  </Link>
 
                 <PostDetail post={post} upVote={this.props.upVote} 

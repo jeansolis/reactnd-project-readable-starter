@@ -6,23 +6,50 @@ import uuidv4 from 'uuid'
 
 class CommentForm extends React.Component {
 
+    state = {
+        author: '',
+        body: ''
+    }
+
     handleSubmit = (e) => {
         e.preventDefault()
         const comment = serializeForm(e.target, {hash: true})
-        //Add additional required fields
-        comment.id = uuidv4()
-        comment.timestamp = Date.now()
-        comment.parentId = this.props.post.id
-        
-        this.props.addComment(comment)
+
+        //validate data
+        if(comment.author && comment.author.length > 0 &&
+        comment.body && comment.body.length > 0) {
+            //Add additional required fields
+            comment.id = uuidv4()
+            comment.timestamp = Date.now()
+            comment.parentId = this.props.post.id
+
+            this.props.addComment(comment)
+
+            //Clean data 
+            this.setState({
+                author: '',
+                body: ''
+            })
+        }
     }
 
     render(){
+        const {author, body} = this.state
         return(
             <form onSubmit={this.handleSubmit}>
-                <input type="text" placeholder="Type your name..." name="author" />
+                <input type="text" placeholder="Type your name..." name="author" 
+                value={author} onChange={(e) => {
+                    this.setState({
+                        author: e.target.value
+                    })
+                }} required/>
                 <br />
-                <textarea placeholder="Type your comment..." name="body"></textarea>
+                <textarea placeholder="Type your comment..." name="body"
+                value={body} onChange={(e) => {
+                    this.setState({
+                        body: e.target.value
+                    })
+                }} required></textarea>
                 <br/><br/>
                 <button type="submit">Add Comment</button>
                 {/* <PlusCircle size={30} className="action-icon add" onClick={() => this.setState({addCommentModalOpen: true})}/> 

@@ -18,10 +18,6 @@ class App extends Component {
     
   }
 
-  state = {
-    categories: []
-  }
-
   componentDidMount(){
 
     this.props.fetchCategories()

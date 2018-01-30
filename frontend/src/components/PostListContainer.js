@@ -11,8 +11,8 @@ class PostListContainer extends Component {
     }
 
     state = {
-        sortColumn: '',
-        sortOrder: ''
+        sortColumn: 'timestamp',
+        sortOrder: '-'
     }
 
     componentDidMount() {

@@ -33,7 +33,7 @@ class PostDetail extends React.Component {
         //TODO: Ask for confirmation
         this.props.deletePost(postID)
         //Navigate to posts list
-        this.props.history.goBack()
+        this.props.history.push("/")
     }
 
     render(){

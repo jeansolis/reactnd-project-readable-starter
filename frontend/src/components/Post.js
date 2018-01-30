@@ -17,17 +17,30 @@ class Post extends Component {
         const newPost = serializeForm(e.target, {hash: true})
 
         if(mode === MODE_ADD){
-            newPost.id = uuidv4()
-            newPost.timestamp = Date.now()
-            
-            this.props.addPost(newPost)
+
+            if(newPost.category && newPost.category.length > 0 &&
+                newPost.title && newPost.title.length > 0 &&
+                newPost.body && newPost.body.length > 0 &&
+                newPost.author && newPost.author.length > 0) {
+
+                newPost.id = uuidv4()
+                newPost.timestamp = Date.now()
+                    
+                this.props.addPost(newPost)
+            }
         }
 
         if(mode === MODE_EDIT){
-            let editPost = {}
-            editPost.title = newPost.title
-            editPost.body = newPost.body
-            this.props.editPost(post.id, newPost)
+
+            if(newPost.title && newPost.title.length > 0 &&
+                newPost.body && newPost.body.length > 0 ){
+                    
+                let editPost = {}
+                editPost.title = newPost.title
+                editPost.body = newPost.body
+                this.props.editPost(post.id, newPost)
+
+            }            
         }
 
         this.props.closePostModal()    
@@ -45,7 +58,7 @@ class Post extends Component {
             </h2>
               <form onSubmit={this.handleSubmit} >
                   <select name="category" defaultValue={mode===MODE_EDIT ? post.category : '' } 
-                    disabled={mode===MODE_EDIT}>
+                    disabled={mode===MODE_EDIT} required>
                       {mode===MODE_ADD ?
                         <option value="">Select a category....</option>
                         :
@@ -59,14 +72,14 @@ class Post extends Component {
                   </select>
                   <br />
                   <input type="text" placeholder="Type your title..." name="title" 
-                  defaultValue={mode===MODE_EDIT ? post.title : '' } />
+                  defaultValue={mode===MODE_EDIT ? post.title : '' } required />
                   <br />
                   <textarea placeholder="Type your thoughts..." name="body"
-                  defaultValue={mode===MODE_EDIT ? post.body : '' }></textarea>
+                  defaultValue={mode===MODE_EDIT ? post.body : '' } required></textarea>
                   <br />
                   <input type="text" placeholder="Type your name..." name="author" 
                   defaultValue={mode===MODE_EDIT ? post.author : '' }
-                  disabled={mode===MODE_EDIT}/>
+                  disabled={mode===MODE_EDIT} required/>
                   <br/><br/>
                   <button type="submit" >
                     {mode===MODE_ADD ?
